@@ -1,20 +1,21 @@
 <template>
   <div class="home">
-    <el-carousel height="400px" motion-blur>
-      <el-carousel-item v-for="item in 4" :key="item">
-        <img src="../../assets/images/web-banner-1.png" alt="" />
-      </el-carousel-item>
-    </el-carousel>
+    <Carousel></Carousel>
+    <Search></Search>
+    <Hospital></Hospital>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Carousel from "./components/Carousel.vue";
+import Search from "./components/Search.vue";
+import Hospital from "./components/Hospital.vue";
+</script>
 
 <style scoped lang="scss">
 .home {
   width: 100%;
   min-height: 700px;
-  background-color: yellow;
   margin-top: 70px;
   img {
     width: 100%;

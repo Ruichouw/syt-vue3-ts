@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <HospitalTop></HospitalTop>
-    <router-view></router-view>
+    <div class="content">
+      <router-view></router-view>
+    </div>
     <HospitalBot></HospitalBot>
   </div>
 </template>
@@ -13,11 +15,14 @@ import HospitalBot from "./components/HospitalBot.vue";
 
 <style scoped lang="scss">
 .container {
-  width: 100%;
-  background-color: bisque;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .content {
+    max-width: 1200px;
+    // background-color: aqua;
+  }
 }
 </style>
