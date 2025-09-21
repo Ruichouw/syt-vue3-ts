@@ -42,17 +42,19 @@
           </div>
         </div>
       </div>
-      <div class="cardPanel" v-loading="loading">
+      <div class="cardPanel" v-loading="loading" v-if="hospitalList.length > 0">
         <Card
           v-for="item in hospitalList"
           :key="item.id"
           :hospitalList="item"
         ></Card>
       </div>
+      <el-empty :image-size="200" v-else />
       <Pagination
         @update-page="handleUpdate"
         @update-size="handleUpdateSize"
         :taotalpage
+        v-if="hospitalList.length > 0"
       ></Pagination>
     </div>
     <div class="right">
@@ -130,6 +132,10 @@ const currentPage = ref(1);
 const taotalpage = ref(10);
 const loading = ref(false);
 const pageSize = ref(10);
+
+// 存储筛选的医院等级
+const filterLevel = ref("");
+const filterRegion = ref("");
 const getlevel = async () => {
   const res = await HomeApi.reqHospitalLevelAndRegion("HosType");
   console.log(res);
@@ -149,9 +155,15 @@ onMounted(() => {
 });
 const changeLevel = (value: string) => {
   activeLevelFlag.value = value;
+  filterLevel.value = value;
+  console.log(value);
+  getreqHospitalPag();
 };
 const changeRegion = (value: string) => {
   activeRegionFlag.value = value;
+  console.log(value);
+  filterRegion.value = value;
+  getreqHospitalPag();
 };
 
 const getreqHospital = async () => {
@@ -164,8 +176,14 @@ const getreqHospital = async () => {
 
 const getreqHospitalPag = async () => {
   loading.value = true;
-  const res = await HomeApi.getreqHospital(currentPage.value, pageSize.value);
+  const res = await HomeApi.getreqHospital(
+    currentPage.value,
+    pageSize.value,
+    filterLevel.value,
+    filterRegion.value
+  );
   hospitalList.value = res.data.content;
+  taotalpage.value = res.data.totalElements;
   loading.value = false;
 };
 const handleUpdate = (val: number) => {
