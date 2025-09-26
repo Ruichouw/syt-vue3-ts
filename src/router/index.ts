@@ -10,14 +10,45 @@ const routes = [
     component: Layout,
     children: [
       {
-        path: "/",
+        path: "",
         name: "Home",
         component: Home,
       },
       {
-        path: "/detail/:id",
-        name: "Detail",
-        component: () => import("@/views/Detail/index.vue"),
+        path: "/hospital/:id",
+        name: "Hospital",
+        component: () => import("@/views/Hospital/index.vue"),
+        redirect: (to: any) => ({
+          name: "Register",
+          params: { id: to.params.id },
+        }),
+        children: [
+          {
+            path: "register",
+            name: "Register",
+            component: () => import("@/views/Hospital/Register/index.vue"),
+          },
+          {
+            path: "detail",
+            name: "Detail",
+            component: () => import("@/views/Hospital/Detail/index.vue"),
+          },
+          {
+            path: "info",
+            name: "Info",
+            component: () => import("@/views/Hospital/Info/index.vue"),
+          },
+          {
+            path: "notice",
+            name: "Notice",
+            component: () => import("@/views/Hospital/Notice/index.vue"),
+          },
+          {
+            path: "operate",
+            name: "Operate",
+            component: () => import("@/views/Hospital/Operate/index.vue"),
+          },
+        ],
       },
     ],
   },

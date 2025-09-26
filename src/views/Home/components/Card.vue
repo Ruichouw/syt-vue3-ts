@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="$router.push(`/detail/${hospitalList.hoscode}`)">
+  <div class="card" @click="$router.push(`/hospital/${hospitalList.hoscode}`)">
     <div class="left">
       <div class="title">{{ hospitalList.hosname }}</div>
       <div class="description">

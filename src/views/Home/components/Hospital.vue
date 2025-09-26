@@ -197,7 +197,7 @@ const handleUpdateSize = (val: number) => {
 </script>
 
 <style scoped lang="scss">
-@import "@/style/icon.css";
+
 .hospital {
   width: 100%;
   display: flex;

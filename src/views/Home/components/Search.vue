@@ -27,7 +27,7 @@ const fetchData = async (keyword: string, cb: any) => {
 };
 
 const handleSelect = (item: any) => {
-  router.push({ name: "Detail", params: { id: item.hostCode } });
+  router.push({ name: "Hospital", params: { id: item.hostCode } });
 };
 </script>
 
