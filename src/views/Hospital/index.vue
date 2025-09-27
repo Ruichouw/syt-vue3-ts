@@ -53,13 +53,19 @@ import {
   Search,
   HomeFilled,
 } from "@element-plus/icons-vue";
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { onMounted, ref } from "vue";
+import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
-
+const route = useRoute();
+import useDetailStore from "@/store/modules/detail";
+const detailStore = useDetailStore();
 const changeActive = (path: string) => {
   router.push({ name: path });
 };
+onMounted(() => {
+  detailStore.getDetailData(route.params.id as string);
+  detailStore.getHospitalDeparment(route.params.id as string);
+});
 </script>
 
 <style scoped lang="scss">
@@ -81,7 +87,6 @@ const changeActive = (path: string) => {
   }
   .content {
     flex: 8;
-    background-color: bisque;
   }
 }
 </style>
