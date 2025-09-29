@@ -61,7 +61,7 @@
           </li>
         </ul>
       </div>
-      <div class="right">
+      <div class="right scrollbar">
         <div class="deparment" v-for="item in detailStore.deparmentArr">
           <h3 class="cur">{{ item.depname }}</h3>
           <div>
@@ -77,10 +77,12 @@
 
 <script setup lang="ts">
 import useDetailStore from "@/store/modules/detail";
-import { onMounted, onBeforeUnmount } from "vue";
+import { onBeforeUnmount, onMounted } from "vue";
 import { ref } from "vue";
+import { nextTick, watch } from "vue";
 const detailStore = useDetailStore();
 const currentIndex = ref(0);
+
 const changeActive = (index: number) => {
   currentIndex.value = index;
   //点击导航获取右侧科室（大的科室H1标题）
@@ -167,6 +169,10 @@ const changeActive = (index: number) => {
       overflow: auto;
       margin-top: -10px;
       color: #7f7f7f;
+      // 隐藏滚动条
+      &::-webkit-scrollbar {
+        display: none;
+      }
       .deparment {
         h3 {
           margin-bottom: 10px;

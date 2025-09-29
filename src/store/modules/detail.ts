@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { reqHospitalDetail, reqHospitalDeparment } from "@/api/hospital";
-import type { DetailState } from "./type";
+import type { DetailState } from "./interface/type";
 import type { HosPitalDetailData } from "@/api/hospital/type";
 
 const useDetailStore = defineStore("detail", {

@@ -7,13 +7,20 @@
       </div>
       <div class="right">
         <p>帮助中心</p>
-        <p>登录注册</p>
+        <p @click="showLogin">登录注册</p>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import useUserStore from "@/store/modules/user";
+const userStore = useUserStore();
+
+const showLogin = () => {
+  userStore.setLoginVisible(true);
+};
+</script>
 
 <style scoped lang="scss">
 .top {
